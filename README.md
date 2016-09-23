@@ -5,10 +5,12 @@ This is the technical test for Xebia application.
 
 * Avoid to consume to much memory (especially OutOfMemory when parsing the file)
 * Almost no limit for the mowed area (above Long.MAX_VALUE)
+* Everything is supposed to be a cartesian coordinate system
 
 ## Where am I now:
 
-* Everything is supposed to be a cartesian coordinate system
+* Maven is in place:
+  * Allows to be easily integrated into some continuous delivery systems (
 * The location is in place :
   * It uses BigInteger so that almost no overflow is possible for the coordinates
   * Unit test included
@@ -45,3 +47,5 @@ This is the technical test for Xebia application.
 
 * Introduce an event handler inside the parser in order to separate the parser from the command logic
 * Use a DSL and a generator for a out of the box parser
+* Add the test coverage plugin for Maven
+* Add the code quality plugin for Maven
