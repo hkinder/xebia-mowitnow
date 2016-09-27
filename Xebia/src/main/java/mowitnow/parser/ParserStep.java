@@ -6,7 +6,7 @@ import java.util.Set;
 import mowitnow.common.ECardinalPoint;
 import mowitnow.common.EOrder;
 
-public enum ParseStep {
+public enum ParserStep {
 	AREA_TOP("0123456789", true),
 	AREA_TOP_VALIDATOR(" \t", false),
 	AREA_RIGHT("0123456789", true),
@@ -17,25 +17,25 @@ public enum ParseStep {
 	MOWER_Y_LOCATION_VALIDATOR(" \t", false),
 	MOWER_DIRECTION(ECardinalPoint.getPossibleIdentifier(), true),
 	MOWER_DIRECTION_VALIDATOR(" \t\r\n", false),
-	ORDERS(EOrder.getPossibleIdentifier(), false),
+	ORDERS(EOrder.getPossibleIdentifier(), true),
 	ORDERS_VALIDATOR(" \t\r\n", false)
 	;
 	
 	private Set<Character> stepValidCharSet;
 	
-	private boolean meaningFull;
+	private boolean stepHasValuableData;
 
-	private ParseStep(Set<Character> stepValidCharSet, boolean meaningFull) {
-		this.meaningFull = meaningFull;
+	private ParserStep(Set<Character> stepValidCharSet, boolean stepHasValuableData) {
+		this.stepHasValuableData = stepHasValuableData;
 		this.stepValidCharSet = stepValidCharSet;
 	}
 
-	private ParseStep(String validChars, boolean meaningFull) {
+	private ParserStep(String validChars, boolean stepHasValuableData) {
 		Set<Character> stepValidCharSet = new HashSet<Character>();
 		for (char currentChar : validChars.toCharArray()) {
 			stepValidCharSet.add(Character.valueOf(currentChar));
 		}
-		this.meaningFull = meaningFull;
+		this.stepHasValuableData = stepHasValuableData;
 		this.stepValidCharSet = stepValidCharSet;
 	}
 
@@ -43,7 +43,7 @@ public enum ParseStep {
 		return this.stepValidCharSet.contains(inputToCheck);
 	}
 	
-	public boolean isMeaningFull() {
-		return this.meaningFull;
+	public boolean hasStepValuableData() {
+		return this.stepHasValuableData;
 	}
 }
