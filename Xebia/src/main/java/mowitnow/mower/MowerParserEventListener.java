@@ -59,13 +59,6 @@ public class MowerParserEventListener implements ParserEventListener {
 				mowerStartDirection = null;
 			}
 		} else
-		// in case of step change from ParserStep.MOWER_DIRECTION_VALIDATOR to ParserStep.MOWER_X_LOCATION : The order data is empty
-		if (previousStep == ParserStep.MOWER_DIRECTION_VALIDATOR && nextStep == ParserStep.MOWER_X_LOCATION && currentMower != null) {
-			outputToWriteTo.write(currentMower.getStatus().getBytes());
-			outputToWriteTo.write("\n".getBytes());
-			// clean up
-			currentMower = null;
-		} else
 		// in case of step change from ParserStep.ORDERS to ParserStep.ORDERS_VALIDATOR
 		if (previousStep == ParserStep.ORDERS && nextStep == ParserStep.ORDERS_VALIDATOR && currentMower != null) {
 			outputToWriteTo.write(currentMower.getStatus().getBytes());
